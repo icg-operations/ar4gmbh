@@ -42,6 +42,7 @@ libxml2-dev \
 libxslt1-dev \
 zip \
 nano \
+nasm \
 wget \
 && apt-get clean && rm -rf /var/lib/apt/lists/* \ 
 && wget -N https://cmake.org/files/v3.7/cmake-3.7.1-Linux-x86_64.tar.gz && tar -xzf cmake-3.7.1-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
