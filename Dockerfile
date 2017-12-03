@@ -44,6 +44,7 @@ zip \
 nano \
 nasm \
 wget \
+mono-xbuild \
 && apt-get clean && rm -rf /var/lib/apt/lists/* \ 
 && wget -N https://cmake.org/files/v3.10/cmake-3.10.0-Linux-x86_64.tar.gz && tar -xzf cmake-3.10.0-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
 && mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip && unzip android-ndk-r11c-linux-x86_64.zip && rm android-ndk-r11c-linux-x86_64.zip \
