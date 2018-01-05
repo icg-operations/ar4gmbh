@@ -2,8 +2,8 @@ FROM buildpack-deps:xenial
 MAINTAINER AR4 GmbH <office@ar4.io>
 
 ENV TERM=xterm
-ENV ANDROID_NDK /tools/android-ndk-r11c
-ENV ANDROID_NDK_r11c=/tools/android-ndk-r11c
+ENV ANDROID_NDK /tools/android-ndk-r16b
+ENV ANDROID_NDK_r16b=/tools/android-ndk-r16b
 ENV POLLY_ROOT /tools/polly
 
 RUN apt-get update && apt-get install -y \
@@ -46,6 +46,6 @@ nasm \
 wget \
 mono-xbuild \
 && apt-get clean && rm -rf /var/lib/apt/lists/* \ 
-&& wget -N https://cmake.org/files/v3.10/cmake-3.10.0-Linux-x86_64.tar.gz && tar -xzf cmake-3.10.0-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
-&& mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip && unzip android-ndk-r11c-linux-x86_64.zip && rm android-ndk-r11c-linux-x86_64.zip \
+&& wget -N https://cmake.org/files/v3.10/cmake-3.10.1-Linux-x86_64.tar.gz && tar -xzf cmake-3.10.1-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
+&& mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip && unzip android-ndk-r16b-linux-x86_64.zip && rm android-ndk-r16b-linux-x86_64.zip \
 && git clone https://github.com/ruslo/polly
