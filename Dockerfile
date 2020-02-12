@@ -47,6 +47,7 @@ libxslt1-dev \
 zip \
 nano \
 nasm \
+vim \
 wget \
 mono-xbuild \
 && apt-get clean && rm -rf /var/lib/apt/lists/* \
