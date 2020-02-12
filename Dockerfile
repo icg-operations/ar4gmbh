@@ -16,8 +16,6 @@ apt-utils \
 bc \
 rsync \
 ssh \
-libpq-dev \
-libmysqlclient-dev \
 python-dev \
 python \
 python-pip \
