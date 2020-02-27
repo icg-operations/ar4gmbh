@@ -47,6 +47,7 @@ nano \
 nasm \
 vim \
 wget \
+freeglut3-dev \
 mono-xbuild \
 && apt-get clean && rm -rf /var/lib/apt/lists/* \
 && wget -N https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.tar.gz && tar -xzf cmake-3.16.0-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
