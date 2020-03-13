@@ -12,6 +12,7 @@ apt-utils \
 unzip \
 git \
 curl \
+libusb-1.0-0-dev \
 apt-utils \
 bc \
 rsync \
