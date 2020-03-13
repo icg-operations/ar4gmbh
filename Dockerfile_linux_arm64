@@ -1,0 +1,24 @@
+FROM buildpack-deps:bionic
+MAINTAINER AR4 GmbH <office@ar4.io>
+
+ENV TERM=xterm
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+apt-utils \
+unzip \
+tzdata \
+git \
+curl \
+gcc-aarch64-linux-gnu \
+g++-aarch64-linux-gnu \
+autoconf \
+libtool \
+pkg-config \
+zip \
+nano \
+vim \
+wget \
+&& apt-get clean && rm -rf /var/lib/apt/lists/* \
+&& wget -N https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.tar.gz && tar -xzf cmake-3.16.0-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
+&& rm cmake-3.16.0-Linux-x86_64.tar.gz && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata
