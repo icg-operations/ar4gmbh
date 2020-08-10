@@ -1,4 +1,4 @@
-FROM debian:buster 
+FROM debian:buster
 MAINTAINER AR4 GmbH <office@ar4.io>
 
 ENV TERM=xterm
@@ -25,8 +25,7 @@ nano \
 vim \
 wget \
 && apt-get clean && rm -rf /var/lib/apt/lists/* \
-&& wget -N https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.tar.gz && tar -xzf cmake-3.16.0-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
-&& rm cmake-3.16.0-Linux-x86_64.tar.gz && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
-&& curl -sL https://deb.nodesource.com/setup_13.x | bash - \
+&& wget -N https://github.com/Kitware/CMake/releases/download/v3.18.1/cmake-3.18.1-Linux-x86_64.tar.gz && tar -xzf cmake-3.18.1-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
+&& rm cmake-3.18.1-Linux-x86_64.tar.gz && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
+&& curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 && apt-get install -y nodejs
-
