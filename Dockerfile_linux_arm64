@@ -1,4 +1,4 @@
-FROM debian:stretch 
+FROM debian:buster 
 MAINTAINER AR4 GmbH <office@ar4.io>
 
 ENV TERM=xterm
@@ -13,6 +13,8 @@ libusb-1.0-0-dev \
 tzdata \
 git \
 curl \
+gcc-arm-linux-gnueabihf \
+g++-arm-linux-gnueabihf \
 gcc-aarch64-linux-gnu \
 g++-aarch64-linux-gnu \
 autoconf \
