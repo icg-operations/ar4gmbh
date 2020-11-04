@@ -1,4 +1,4 @@
-FROM buildpack-deps:bionic
+FROM buildpack-deps:focal
 MAINTAINER AR4 GmbH <office@ar4.io>
 
 ENV TERM=xterm
@@ -19,7 +19,6 @@ rsync \
 ssh \
 python-dev \
 python \
-python-pip \
 curl \
 autoconf \
 automake \
@@ -34,8 +33,8 @@ build-essential \
 npm \
 nodejs \
 node-gyp \
-nodejs-dev \
-libssl1.0-dev \
+libnode-dev \
+libssl-dev \
 openssh-client \
 golang \
 mesa-common-dev \
