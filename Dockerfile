@@ -11,7 +11,10 @@ RUN apt-get update && apt-get install -y \
 apt-utils \
 unzip \
 git \
-curl \
+curl 
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+&& apt-get install -y nodejs \
 libusb-1.0-0-dev \
 apt-utils \
 bc \
@@ -30,10 +33,6 @@ g++ \
 gcc \
 wget \
 build-essential \
-npm \
-nodejs \
-node-gyp \
-libnode-dev \
 libssl-dev \
 openssh-client \
 golang \
@@ -48,8 +47,9 @@ nasm \
 vim \
 wget \
 freeglut3-dev \
-mono-xbuild \
-&& apt-get clean && rm -rf /var/lib/apt/lists/* \
-&& wget -N https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.tar.gz && tar -xzf cmake-3.16.0-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
+mono-xbuild 
+
+RUN wget -N https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.tar.gz && tar -xzf cmake-3.16.0-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
 && mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip && unzip android-ndk-r16b-linux-x86_64.zip && rm android-ndk-r16b-linux-x86_64.zip \
-&& git clone https://github.com/ruslo/polly.git && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata
+&& git clone https://github.com/ruslo/polly.git && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
+&& apt-get clean && rm -rf /var/lib/apt/lists/* \
