@@ -2,8 +2,8 @@ FROM buildpack-deps:focal
 MAINTAINER AR4 GmbH <office@ar4.io>
 
 ENV TERM=xterm
-ENV ANDROID_NDK /tools/android-ndk-r16b
-ENV ANDROID_NDK_r16b=/tools/android-ndk-r16b
+ENV ANDROID_NDK /tools/android-ndk-r23
+ENV ANDROID_NDK_r23=/tools/android-ndk-r23
 ENV POLLY_ROOT /tools/polly
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 apt-utils \
 unzip \
 git \
-curl 
+curl
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 && apt-get install -y nodejs \
@@ -47,9 +47,15 @@ nasm \
 vim \
 wget \
 freeglut3-dev \
-mono-xbuild 
+mono-xbuild
 
+<<<<<<< HEAD
 RUN wget -N https://github.com/Kitware/CMake/releases/download/v3.22.5/cmake-3.22.5-linux-x86_64.tar.gz && tar -xzf cmake-3.22.5-linux-x86_64.tar.gz -C /usr --strip-components=1 \
 && mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip && unzip android-ndk-r16b-linux-x86_64.zip && rm android-ndk-r16b-linux-x86_64.zip \
 && git clone https://github.com/ruslo/polly.git && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
+=======
+RUN wget -N https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-linux-x86_64.tar.gz && tar -xzf cmake-3.21.1-linux-x86_64.tar.gz -C /usr --strip-components=1 \
+&& mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r23-linux-x86_64.zip && unzip android-ndk-r23-linux-x86_64.zip && rm android-ndk-r23-linux-x86_64.zip \
+&& git clone https://github.com/belveder79/polly.git && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
+>>>>>>> e8d7f8952739664c6199cd5db9399cea78002976
 && apt-get clean && rm -rf /var/lib/apt/lists/* \
