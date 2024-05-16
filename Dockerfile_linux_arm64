@@ -1,16 +1,17 @@
-FROM debian:buster
+FROM debian:bookworm
 MAINTAINER AR4 GmbH <office@ar4.io>
 
 ENV TERM=xterm
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
 apt-utils \
 unzip \
 make \
 p7zip-full \
 libusb-1.0-0-dev \
 tzdata \
+ffmpeg \
 git \
 curl \
 gcc-aarch64-linux-gnu \
@@ -22,9 +23,10 @@ zip \
 nano \
 vim \
 wget \
-&& apt-get clean && rm -rf /var/lib/apt/lists/* \
-&& wget -N https://kumisystems.dl.sourceforge.net/project/raspberry-pi-cross-compilers/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%209.2.0/Raspberry%20Pi%201%2C%20Zero/cross-gcc-9.2.0-pi_0-1.tar.gz && tar -xzf cross-gcc-9.2.0-pi_0-1.tar.gz -C /usr --strip-components=1 \
-&& wget -N https://github.com/Kitware/CMake/releases/download/v3.18.1/cmake-3.18.1-Linux-x86_64.tar.gz && tar -xzf cmake-3.18.1-Linux-x86_64.tar.gz -C /usr --strip-components=1 \
-&& rm cross-gcc-9.2.0-pi_0-1.tar.gz cmake-3.18.1-Linux-x86_64.tar.gz && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
-&& curl -sL https://deb.nodesource.com/setup_14.x | bash - \
-&& apt-get install -y nodejs
+&& apt clean \
+&& wget -N https://deac-ams.dl.sourceforge.net/project/raspberry-pi-cross-compilers/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Buster/GCC%2010.3.0/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204/cross-gcc-10.3.0-pi_3%2B.tar.gz && tar -xzf cross-gcc-10.3.0-pi_3+.tar.gz -C /usr --strip-components=1 \
+&& wget -N https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2-linux-x86_64.tar.gz && tar -xzf cmake-3.24.2-linux-x86_64.tar.gz -C /usr --strip-components=1 \
+&& rm cross-gcc-10.3.0-pi_3+.tar.gz cmake-3.24.2-linux-x86_64.tar.gz && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
+&& curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+&& apt install -y nodejs && apt-get -y autoclean \
+&& apt-get -y autoremove && rm -rf /var/lib/apt/lists/*

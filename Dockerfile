@@ -1,27 +1,29 @@
-FROM buildpack-deps:focal
+FROM buildpack-deps:noble
 MAINTAINER AR4 GmbH <office@ar4.io>
 
 ENV TERM=xterm
-ENV ANDROID_NDK /tools/android-ndk-r23
-ENV ANDROID_NDK_r23=/tools/android-ndk-r23
+ENV ANDROID_NDK /tools/android-ndk-r23c
+ENV ANDROID_NDK_r23c=/tools/android-ndk-r23c
 ENV POLLY_ROOT /tools/polly
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y \
+RUN sed -i -e 's/^APT/# APT/' -e 's/^DPkg/# DPkg/' \
+      /etc/apt/apt.conf.d/docker-clean
+
+RUN apt update && apt install -y \
 apt-utils \
 unzip \
 git \
 curl
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
-&& apt-get install -y nodejs \
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+&& apt install -y nodejs \
 libusb-1.0-0-dev \
-apt-utils \
 bc \
 rsync \
 ssh \
-python-dev \
-python \
+python-dev-is-python3 \
+python-is-python3 \
 curl \
 autoconf \
 automake \
@@ -31,6 +33,7 @@ libtool \
 make \
 g++ \
 gcc \
+ffmpeg \
 wget \
 build-essential \
 libssl-dev \
@@ -49,13 +52,8 @@ wget \
 freeglut3-dev \
 mono-xbuild
 
-<<<<<<< HEAD
-RUN wget -N https://github.com/Kitware/CMake/releases/download/v3.22.5/cmake-3.22.5-linux-x86_64.tar.gz && tar -xzf cmake-3.22.5-linux-x86_64.tar.gz -C /usr --strip-components=1 \
-&& mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip && unzip android-ndk-r16b-linux-x86_64.zip && rm android-ndk-r16b-linux-x86_64.zip \
-&& git clone https://github.com/ruslo/polly.git && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
-=======
-RUN wget -N https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-linux-x86_64.tar.gz && tar -xzf cmake-3.21.1-linux-x86_64.tar.gz -C /usr --strip-components=1 \
-&& mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r23-linux-x86_64.zip && unzip android-ndk-r23-linux-x86_64.zip && rm android-ndk-r23-linux-x86_64.zip \
+RUN wget -N https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2-linux-x86_64.tar.gz && tar -xzf cmake-3.24.2-linux-x86_64.tar.gz -C /usr --strip-components=1 \
+&& mkdir tools && cd tools && wget -c https://dl.google.com/android/repository/android-ndk-r23c-linux.zip && unzip android-ndk-r23c-linux.zip && rm android-ndk-r23c-linux.zip \
 && git clone https://github.com/belveder79/polly.git && ln -fs /usr/share/zoneinfo/Europe/Vienna /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata \
->>>>>>> e8d7f8952739664c6199cd5db9399cea78002976
-&& apt-get clean && rm -rf /var/lib/apt/lists/* \
+&& apt clean && apt-get -y autoclean \
+&& apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
