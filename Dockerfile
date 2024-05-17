@@ -30,10 +30,12 @@ automake \
 libstdc++6 \
 libc6 \
 libtool \
+pkg-config \
+xz-utils \
 make \
 g++ \
 gcc \
-ffmpeg \
+ffmpeg libswresample-dev libavcodec-dev libavutil-dev libavformat-dev libswscale-dev \
 wget \
 build-essential \
 libssl-dev \

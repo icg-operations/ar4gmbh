@@ -21,6 +21,8 @@ libtool \
 pkg-config \
 zip \
 nano \
+g++ \
+xz-utils \
 vim \
 wget \
 && apt clean \
